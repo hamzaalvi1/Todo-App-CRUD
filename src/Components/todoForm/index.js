@@ -1,13 +1,34 @@
-import React,{useState} from 'react'
+import React from 'react'
 
-const TodoForm = () => {
+const TodoForm = ({todoArray,todoArrayFunc,toggleBtn,todoEditID,todoData,setTodoData,setToggleBtn}) => {
    
-    const [todoData,setTodoData]= useState({todoTitle: "",todoDetails:""})
+    
      
     const formSubmit = (evt)=>{
       evt.preventDefault()
-      console.log(todoData)   
+
+     
+
+      if(!toggleBtn){
+      const newTodo = {todoId: Math.ceil(Math.random()* 100000),...todoData}
+      todoArrayFunc([...todoArray,newTodo])
       setTodoData({todoTitle: "",todoDetails:""})
+      }
+      else{
+          todoArrayFunc(
+            todoArray.map((el)=>{
+                if(el.todoId === todoEditID){
+                    return {...el,todoTitle:todoData.todoTitle,todoDetails:todoData.todoDetails}
+                }
+                return el
+            })
+          )
+        setTodoData({todoTitle: "",todoDetails:""}) 
+        setToggleBtn(false)
+
+
+      }
+
      
     }
   
@@ -28,7 +49,12 @@ const TodoForm = () => {
                 </div>
                 
                 <div className="frm-btn">
+                    {
+                     toggleBtn ?
+                    <button type="click" >Update Todo</button>
+                     :
                     <button type="submit">Add Todo</button>
+                    }
                 </div>
 
 

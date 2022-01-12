@@ -1,24 +1,36 @@
 import React from 'react'
 
-const TodoList = () => {
+const TodoList = ({todoItems,todoArrayFunc,onEditItem}) => {
+  
+  const onDeleteItem = (id)=>{
+     const updateList = todoItems.filter((todoItems)=>{
+      return todoItems.todoId !== id
+     })
+     todoArrayFunc(updateList)
+  }
+
+
+
     return (
         <div className='todoList'>
             <ul>
-                <li>
+                {todoItems.map((tData)=>{
+                  return(
+                <li key={tData.todoId}>
                     <div className="todoMain">
                       <div className="todoData">
                       <h4>
-                           Some Work
+                           {tData.todoTitle}
                        </h4>
                        <p>
-                           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam earum aspernatur ipsa, consequuntur consequatur est perferendis blanditiis vitae libero debitis, deserunt beatae ipsam ad, perspiciatis provident enim magnam obcaecati aliquam?
+                          {tData.todoDetails}
                        </p>
                       </div>
                       <div className="todoActions">
-                          <button className="editBtn">
+                          <button className="editBtn" onClick={()=>onEditItem(tData.todoId)}>
                           <i className="far fa-edit"></i>
                           </button>
-                          <button className="deleteBtn">
+                          <button className="deleteBtn" onClick={()=>onDeleteItem(tData.todoId)}>
                           <i className="fas fa-trash-alt"></i>
                           </button>
                       </div>
@@ -27,98 +39,10 @@ const TodoList = () => {
    
                     </div>
                 </li>
-                <li>
-                    <div className="todoMain">
-                      <div className="todoData">
-                      <h4>
-                           Some Work
-                       </h4>
-                       <p>
-                           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam earum aspernatur ipsa, consequuntur consequatur est perferendis blanditiis vitae libero debitis, deserunt beatae ipsam ad, perspiciatis provident enim magnam obcaecati aliquam?
-                       </p>
-                      </div>
-                      <div className="todoActions">
-                          <button className="editBtn">
-                          <i className="far fa-edit"></i>
-                          </button>
-                          <button className="deleteBtn">
-                          <i className="fas fa-trash-alt"></i>
-                          </button>
-                      </div>
-
-
-   
-                    </div>
-                </li>
-                <li>
-                    <div className="todoMain">
-                      <div className="todoData">
-                      <h4>
-                           Some Work
-                       </h4>
-                       <p>
-                           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam earum aspernatur ipsa, consequuntur consequatur est perferendis blanditiis vitae libero debitis, deserunt beatae ipsam ad, perspiciatis provident enim magnam obcaecati aliquam?
-                       </p>
-                      </div>
-                      <div className="todoActions">
-                          <button className="editBtn">
-                          <i className="far fa-edit"></i>
-                          </button>
-                          <button className="deleteBtn">
-                          <i className="fas fa-trash-alt"></i>
-                          </button>
-                      </div>
-
-
-   
-                    </div>
-                </li>
-                <li>
-                    <div className="todoMain">
-                      <div className="todoData">
-                      <h4>
-                           Some Work
-                       </h4>
-                       <p>
-                           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam earum aspernatur ipsa, consequuntur consequatur est perferendis blanditiis vitae libero debitis, deserunt beatae ipsam ad, perspiciatis provident enim magnam obcaecati aliquam?
-                       </p>
-                      </div>
-                      <div className="todoActions">
-                          <button className="editBtn">
-                          <i className="far fa-edit"></i>
-                          </button>
-                          <button className="deleteBtn">
-                          <i className="fas fa-trash-alt"></i>
-                          </button>
-                      </div>
-
-
-   
-                    </div>
-                </li>
-                <li>
-                    <div className="todoMain">
-                      <div className="todoData">
-                      <h4>
-                           Some Work
-                       </h4>
-                       <p>
-                           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam earum aspernatur ipsa, consequuntur consequatur est perferendis blanditiis vitae libero debitis, deserunt beatae ipsam ad, perspiciatis provident enim magnam obcaecati aliquam?
-                       </p>
-                      </div>
-                      <div className="todoActions">
-                          <button className="editBtn">
-                          <i className="far fa-edit"></i>
-                          </button>
-                          <button className="deleteBtn">
-                          <i className="fas fa-trash-alt"></i>
-                          </button>
-                      </div>
-
-
-   
-                    </div>
-                </li>
+                  )
+                })}
+                
+             
             </ul>
         </div>
     )

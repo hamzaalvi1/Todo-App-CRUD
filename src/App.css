@@ -142,8 +142,12 @@ form.main_Form .frm-fld.textarea {
 .todoMain {
   padding: 10px 5px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+.todoActions {
+  display: flex;
+  flex-flow: column-reverse;
 }
 .deleteBtn,
 .editBtn {
